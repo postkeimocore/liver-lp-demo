@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazonギフト券3,000円プレゼント｜ライバー登録キャンペーン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #FF4D8D;
+    --primary-dark: #E8357A;
+    --secondary: #FFB800;
+    --accent: #6C5CE7;
+    --accent-light: #A29BFE;
+    --mint: #00D2A0;
+    --bg-light: #FFF8FA;
+    --bg-warm: #FFFDF5;
+    --bg-purple: #F8F0FF;
+    --bg-mint: #F0FFF9;
+    --text-main: #2D2D2D;
+    --text-sub: #666666;
+    --text-light: #999999;
+    --white: #FFFFFF;
+    --gradient-hero: linear-gradient(135deg, #FF4D8D 0%, #FF8E53 50%, #FFB800 100%);
+    --gradient-cta: linear-gradient(135deg, #FF4D8D 0%, #E8357A 100%);
+    --shadow-card: 0 4px 20px rgba(255,77,141,0.10);
+    --shadow-cta: 0 6px 24px rgba(255,77,141,0.35);
+    --radius: 16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--text-main);background:var(--bg-light);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+  /* ===== MOCK BANNER ===== */
+  .mock-banner{background:#1a1a2e;color:#fff;text-align:center;padding:10px 16px;font-size:11px;letter-spacing:.05em;position:sticky;top:0;z-index:100;line-height:1.6;}
+  .mock-banner .tag{background:var(--primary);padding:2px 8px;border-radius:4px;font-weight:700;font-size:10px;margin-right:4px;}
+  .mock-banner .credit{display:block;margin-top:2px;font-size:10px;opacity:.6;}
+
+  /* ===== COMMON ===== */
+  .inner{max-width:420px;margin:0 auto;}
+  section{padding:48px 20px;position:relative;overflow:hidden;}
+  .section-label{text-align:center;margin-bottom:8px;}
+  .section-label span{display:inline-block;background:var(--primary);color:var(--white);font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:10px;padding:4px 14px;border-radius:50px;letter-spacing:.12em;}
+  .section-label.purple span{background:var(--accent);}
+  .section-label.mint span{background:var(--mint);}
+  .section-title{text-align:center;font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:21px;color:var(--text-main);margin-bottom:12px;line-height:1.55;}
+  .section-title .pink{color:var(--primary);}
+  .section-title .purple{color:var(--accent);}
+  .section-title .mint{color:var(--mint);}
+  .section-lead{text-align:center;font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:28px;}
+
+  /* ===== CTA ===== */
+  .cta-wrap{text-align:center;}
+  .cta-btn{display:block;width:100%;max-width:340px;margin:0 auto;padding:18px 24px;background:var(--gradient-cta);color:var(--white);font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:17px;text-decoration:none;border-radius:60px;border:none;cursor:pointer;box-shadow:var(--shadow-cta);position:relative;overflow:hidden;letter-spacing:.04em;transition:transform .2s,box-shadow .2s;}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,77,141,.45);}
+  .cta-btn::after{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 2.5s infinite;}
+  @keyframes shimmer{0%{left:-100%}100%{left:100%}}
+  .cta-sub{font-size:11px;color:var(--text-light);margin-top:8px;font-weight:500;}
+  .cta-btn.white{background:var(--white);color:var(--primary);box-shadow:0 6px 24px rgba(0,0,0,.12);}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+  .cta-btn{animation:pulse 2.4s ease-in-out infinite;}
+  .cta-btn:hover{animation:none;}
+
+  /* ===== DECORATIVE ELEMENTS ===== */
+  .deco-sparkle{position:absolute;pointer-events:none;z-index:1;}
+  .deco-circle{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
+  .deco-dots{position:absolute;pointer-events:none;z-index:0;opacity:.15;}
+
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @keyframes floatSlow{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(5deg)}}
+  @keyframes twinkle{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+  @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+  /* ===== HERO ===== */
+  .hero{background:var(--gradient-hero);padding:44px 20px 0;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-40%;left:-30%;width:160%;height:180%;background:radial-gradient(ellipse at 25% 15%,rgba(255,255,255,.18) 0%,transparent 55%);pointer-events:none;}
+
+  /* Hero decorative elements */
+  .hero-deco-1{position:absolute;top:15%;right:8%;width:40px;height:40px;border:3px solid rgba(255,255,255,.2);border-radius:50%;animation:float 3s ease-in-out infinite;}
+  .hero-deco-2{position:absolute;top:40%;left:5%;width:24px;height:24px;background:rgba(255,255,255,.15);border-radius:6px;transform:rotate(45deg);animation:floatSlow 4s ease-in-out infinite;}
+  .hero-deco-3{position:absolute;bottom:35%;right:5%;width:16px;height:16px;background:rgba(255,255,255,.2);border-radius:50%;animation:float 2.5s ease-in-out infinite .5s;}
+  .hero-deco-4{position:absolute;top:25%;left:12%;animation:twinkle 2s ease-in-out infinite;}
+  .hero-deco-5{position:absolute;top:10%;right:20%;animation:twinkle 2s ease-in-out infinite .7s;}
+  .hero-deco-6{position:absolute;bottom:40%;left:8%;animation:twinkle 2s ease-in-out infinite 1.2s;}
+
+  .hero-badge{display:inline-block;background:var(--white);color:var(--primary);font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:12px;padding:6px 18px;border-radius:50px;margin-bottom:14px;position:relative;letter-spacing:.04em;}
+  .hero-period{color:rgba(255,255,255,.88);font-size:13px;font-weight:500;margin-bottom:18px;}
+  .hero-gift-label{color:var(--white);font-family:'M PLUS Rounded 1c',sans-serif;font-weight:700;font-size:15px;margin-bottom:4px;}
+  .hero-gift-amount{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:900;color:var(--white);line-height:1;margin-bottom:6px;}
+  .hero-gift-amount .amazon{font-size:17px;display:block;margin-bottom:2px;letter-spacing:.06em;}
+  .hero-gift-amount .yen{font-size:54px;text-shadow:0 3px 12px rgba(0,0,0,.12);}
+  .hero-gift-amount .yen-mark{font-size:26px;}
+  .hero-gift-amount .present{font-size:19px;display:block;margin-top:2px;}
+  .hero-catch{color:var(--white);font-size:14px;font-weight:700;line-height:1.7;margin:16px 0 24px;}
+  .hero-catch em{font-style:normal;background:rgba(255,255,255,.22);padding:2px 8px;border-radius:4px;}
+  .hero .cta-sub{color:rgba(255,255,255,.75);}
+
+  /* Hero silhouette */
+  .hero-visual{position:relative;margin-top:28px;display:flex;justify-content:center;align-items:flex-end;height:220px;}
+  .hero-silhouette-wrap{position:relative;z-index:2;}
+  .hero-glow{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:180px;height:180px;background:radial-gradient(ellipse,rgba(255,255,255,.25) 0%,transparent 70%);z-index:1;border-radius:50%;}
+
+  /* Phone mockup next to silhouette */
+  .hero-phone{position:absolute;right:-30px;bottom:40px;z-index:3;animation:float 3s ease-in-out infinite;}
+
+  /* ===== WHY NOW ===== */
+  .why-now{background:var(--white);padding:48px 20px 44px;}
+  .why-now-message{max-width:400px;margin:0 auto;background:linear-gradient(135deg,#FFF5F8 0%,#FFF8EE 100%);border-radius:var(--radius);padding:28px 22px;text-align:center;position:relative;}
+  .why-now-message p{font-size:14px;line-height:2;color:var(--text-main);font-weight:500;}
+  .why-now-message p strong{color:var(--primary);font-weight:700;}
+  .why-now-message .emphasis{display:block;font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:18px;color:var(--primary);margin-top:16px;line-height:1.6;}
+
+  /* Thinking person illustration */
+  .why-now-illust{text-align:center;margin-bottom:20px;}
+
+  /* ===== MERIT ===== */
+  .merit{background:var(--bg-warm);}
+  .merit-list{display:flex;flex-direction:column;gap:16px;max-width:400px;margin:0 auto;}
+  .merit-card{background:var(--white);border-radius:var(--radius);padding:24px 20px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;}
+  .merit-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;}
+  .merit-card:nth-child(1)::before{background:var(--primary);}
+  .merit-card:nth-child(2)::before{background:var(--accent);}
+  .merit-card:nth-child(3)::before{background:var(--secondary);}
+  .merit-card:nth-child(4)::before{background:var(--mint);}
+  .merit-num{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;margin-bottom:6px;}
+  .merit-card:nth-child(1) .merit-num{color:var(--primary);}
+  .merit-card:nth-child(2) .merit-num{color:var(--accent);}
+  .merit-card:nth-child(3) .merit-num{color:var(--secondary);}
+  .merit-card:nth-child(4) .merit-num{color:var(--mint);}
+  .merit-card h3{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:16px;margin-bottom:8px;line-height:1.5;}
+  .merit-card p{font-size:13px;line-height:1.8;color:var(--text-sub);}
+  .merit-card .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .merit-card .mini-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:50px;background:#F5F5F5;color:var(--text-sub);}
+
+  /* Merit card icons */
+  .merit-icon{float:right;margin:-4px -4px 8px 12px;opacity:.85;}
+
+  /* ===== MID CTA ===== */
+  .mid-cta{background:linear-gradient(135deg,#FFF0F5 0%,#FFF5EE 100%);padding:32px 20px;text-align:center;position:relative;overflow:hidden;}
+  .mid-cta .cta-sub{color:var(--text-light);}
+
+  /* ===== REVENUE ===== */
+  .revenue{background:var(--white);}
+  .revenue-highlight{max-width:400px;margin:0 auto 24px;background:linear-gradient(135deg,#6C5CE7 0%,#A29BFE 100%);border-radius:var(--radius);padding:28px 22px;text-align:center;color:var(--white);position:relative;overflow:hidden;}
+  .revenue-highlight::before{content:'';position:absolute;top:-20px;right:-20px;width:100px;height:100px;border:2px solid rgba(255,255,255,.1);border-radius:50%;}
+  .revenue-highlight::after{content:'';position:absolute;bottom:-30px;left:-15px;width:80px;height:80px;border:2px solid rgba(255,255,255,.08);border-radius:50%;}
+  .revenue-highlight .rev-label{font-size:13px;font-weight:700;margin-bottom:4px;opacity:.9;}
+  .revenue-highlight .rev-big{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:900;font-size:36px;line-height:1.2;margin-bottom:4px;position:relative;z-index:1;}
+  .revenue-highlight .rev-big span{font-size:18px;}
+  .revenue-highlight .rev-sub{font-size:12px;opacity:.8;line-height:1.6;position:relative;z-index:1;}
+  .revenue-cards{max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+  .rev-card{background:var(--bg-purple);border-radius:12px;padding:18px 20px;display:flex;align-items:flex-start;gap:12px;}
+  .rev-icon{flex-shrink:0;font-size:24px;line-height:1;margin-top:2px;}
+  .rev-card h4{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--accent);}
+  .rev-card p{font-size:12px;line-height:1.7;color:var(--text-sub);}
+
+  /* ===== SUPPORT ===== */
+  .support{background:var(--bg-mint);}
+  .support-grid{max-width:400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .support-item{background:var(--white);border-radius:12px;padding:20px 16px;text-align:center;}
+  .support-icon{font-size:28px;margin-bottom:8px;}
+  .support-item h4{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:13px;margin-bottom:6px;color:var(--text-main);line-height:1.5;}
+  .support-item p{font-size:11px;line-height:1.7;color:var(--text-sub);}
+
+  /* ===== VOICE ===== */
+  .voice{background:var(--white);overflow:visible;}
+  .voice-list{max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:16px;}
+  .voice-card{background:var(--bg-light);border-radius:var(--radius);padding:22px 20px;position:relative;}
+  .voice-card::before{content:'"';position:absolute;top:10px;left:16px;font-family:'M PLUS Rounded 1c',sans-serif;font-size:40px;font-weight:900;color:var(--primary);opacity:.12;line-height:1;}
+  .voice-profile{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .voice-avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0;position:relative;background:#f0f0f0;}
+  .voice-name{font-size:13px;font-weight:700;}
+  .voice-meta{font-size:11px;color:var(--text-light);}
+  .voice-card blockquote{font-size:13px;line-height:1.85;color:var(--text-sub);font-style:normal;}
+
+  /* ===== STEPS ===== */
+  .steps{background:var(--bg-warm);}
+  .steps-list{max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+  .step-item{background:var(--white);border-radius:var(--radius);padding:22px 20px;display:flex;align-items:flex-start;gap:14px;box-shadow:var(--shadow-card);}
+  .step-number{flex-shrink:0;width:40px;height:40px;background:var(--gradient-hero);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'M PLUS Rounded 1c',sans-serif;font-weight:900;font-size:17px;color:var(--white);}
+  .step-content h3{font-size:14px;font-weight:700;margin-bottom:3px;}
+  .step-content p{font-size:12px;color:var(--text-sub);line-height:1.6;}
+  .step-arrow{text-align:center;color:var(--primary);font-size:18px;margin:-4px 0;opacity:.4;}
+
+  /* ===== CAMPAIGN DETAIL ===== */
+  .campaign-detail{background:var(--white);}
+  .detail-card{max-width:400px;margin:0 auto;background:var(--bg-light);border-radius:var(--radius);padding:24px;}
+  .detail-row{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,77,141,.08);}
+  .detail-row:last-child{border-bottom:none;padding-bottom:0;}
+  .detail-row:first-child{padding-top:0;}
+  .detail-label{flex-shrink:0;width:76px;font-size:12px;font-weight:700;color:var(--primary);padding-top:2px;}
+  .detail-value{font-size:13px;font-weight:500;line-height:1.7;}
+  .detail-value small{color:var(--text-light);font-size:11px;}
+
+  /* ===== FAQ ===== */
+  .faq{background:var(--bg-warm);}
+  .faq-list{max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+  .faq-item{background:var(--white);border-radius:12px;}
+  .faq-q{padding:14px 18px;font-size:13px;font-weight:700;display:flex;align-items:flex-start;gap:8px;}
+  .faq-q-icon{flex-shrink:0;color:var(--primary);font-family:'M PLUS Rounded 1c',sans-serif;font-weight:900;font-size:14px;}
+  .faq-a{padding:0 18px 14px 38px;font-size:12px;line-height:1.75;color:var(--text-sub);}
+
+  /* ===== BOTTOM CTA ===== */
+  .bottom-cta{background:var(--gradient-hero);padding:48px 20px;text-align:center;position:relative;overflow:hidden;}
+  .bottom-cta::before{content:'';position:absolute;top:-30%;right:-20%;width:200px;height:200px;border:2px solid rgba(255,255,255,.1);border-radius:50%;}
+  .bottom-cta::after{content:'';position:absolute;bottom:-20%;left:-10%;width:150px;height:150px;border:2px solid rgba(255,255,255,.08);border-radius:50%;}
+  .bottom-cta-title{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:19px;color:var(--white);margin-bottom:6px;line-height:1.6;position:relative;z-index:1;}
+  .bottom-cta-sub{color:rgba(255,255,255,.85);font-size:13px;margin-bottom:24px;position:relative;z-index:1;}
+  .bottom-cta .cta-sub{color:rgba(255,255,255,.65);}
+  .bottom-cta .cta-wrap{position:relative;z-index:1;}
+
+  /* ===== NOTES & FOOTER ===== */
+  .notes{background:var(--white);padding:28px 20px;}
+  .notes-inner{max-width:400px;margin:0 auto;}
+  .notes h4{font-size:11px;font-weight:700;color:var(--text-sub);margin-bottom:10px;}
+  .notes ul{list-style:none;}
+  .notes li{font-size:10.5px;color:#aaa;line-height:1.8;padding-left:14px;position:relative;}
+  .notes li::before{content:'※';position:absolute;left:0;}
+  /* ===== DIAGNOSTIC BANNER ===== */
+  .diag-banner{padding:0 20px;position:relative;}
+  .diag-banner-inner{max-width:400px;margin:0 auto;background:linear-gradient(135deg,#F8F0FF 0%,#FFF0F5 100%);border-radius:14px;padding:22px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;text-decoration:none;color:var(--text-main);transition:transform .2s,box-shadow .2s;border:1.5px solid rgba(108,92,231,.1);position:relative;overflow:hidden;}
+  .diag-banner-inner:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(108,92,231,.12);}
+  .diag-banner-icon{flex-shrink:0;width:56px;height:56px;background:var(--white);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 2px 8px rgba(108,92,231,.08);}
+  .diag-banner-text{flex:1;min-width:0;}
+  .diag-banner-label{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:3px;display:flex;align-items:center;gap:4px;}
+  .diag-banner-label::before{content:'';display:inline-block;width:4px;height:4px;background:var(--accent);border-radius:50%;}
+  .diag-banner-title{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:14px;line-height:1.5;margin-bottom:2px;}
+  .diag-banner-sub{font-size:11px;color:var(--text-light);line-height:1.5;}
+  .diag-banner-arrow{flex-shrink:0;width:28px;height:28px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:14px;font-weight:700;transition:transform .2s;}
+  .diag-banner-inner:hover .diag-banner-arrow{transform:translateX(2px);}
+  .diag-banner-context{text-align:center;max-width:400px;margin:0 auto;padding-top:12px;}
+  .diag-banner-context p{font-size:10.5px;color:var(--text-light);line-height:1.5;}
+
+  /* Placement wrappers */
+  .diag-placement-1{padding-top:0;padding-bottom:0;margin-bottom:-16px;}
+  .diag-placement-2{padding-top:16px;padding-bottom:32px;}
+
+  /* ===== FLOATING DIAGNOSTIC BANNER ===== */
+  .float-diag{position:fixed;bottom:20px;right:16px;z-index:90;transition:opacity .3s,transform .3s;opacity:1;transform:translateY(0);}
+  .float-diag.hidden{opacity:0;transform:translateY(20px);pointer-events:none;}
+  .float-diag-link{display:flex;align-items:center;gap:10px;background:var(--white);border:1.5px solid rgba(108,92,231,.15);border-radius:50px;padding:8px 16px 8px 10px;text-decoration:none;color:var(--text-main);box-shadow:0 4px 20px rgba(108,92,231,.15),0 1px 4px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
+  .float-diag-link:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(108,92,231,.22);}
+  .float-diag-icon{width:36px;height:36px;background:linear-gradient(135deg,#F8F0FF,#FFF0F5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .float-diag-text{line-height:1.3;}
+  .float-diag-title{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:12px;color:var(--accent);}
+  .float-diag-sub{font-size:10px;color:var(--text-light);margin-top:1px;}
+  .float-diag-close{position:absolute;top:-8px;right:-8px;width:22px;height:22px;background:var(--white);border:1.5px solid #eee;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-light);cursor:pointer;transition:background .2s;line-height:1;}
+  .float-diag-close:hover{background:#f5f5f5;color:var(--text-sub);}
+
+  footer{background:#1a1a2e;color:rgba(255,255,255,.4);text-align:center;padding:20px;font-size:10px;}
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  .hero-badge{animation:fadeInUp .5s ease-out;}
+  .hero-period{animation:fadeInUp .5s ease-out .08s both;}
+  .hero-gift-label{animation:fadeInUp .5s ease-out .14s both;}
+  .hero-gift-amount{animation:fadeInUp .5s ease-out .2s both;}
+  .hero-catch{animation:fadeInUp .5s ease-out .26s both;}
+  .hero .cta-wrap{animation:fadeInUp .5s ease-out .34s both;}
+  .hero-visual{animation:fadeInUp .6s ease-out .42s both;}
+
+  @media(min-width:768px){
+    .hero{padding:56px 20px 0;}
+    .hero-gift-amount .yen{font-size:64px;}
+    .section-title{font-size:24px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="mock-banner">
+  <span class="tag">MOCK</span>
+  構成確認用モックアップ ― テキスト・数値・写真はすべて仮置きです
+  <span class="credit">Produced by XUPDATE</span>
+</div>
+
+<!-- ==================== 1. HERO ==================== -->
+<section class="hero">
+  <!-- Decorative elements -->
+  <div class="hero-deco-1"></div>
+  <div class="hero-deco-2"></div>
+  <div class="hero-deco-3"></div>
+  <div class="hero-deco-4">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5L8 0Z" fill="rgba(255,255,255,0.4)"/></svg>
+  </div>
+  <div class="hero-deco-5">
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5L8 0Z" fill="rgba(255,255,255,0.3)"/></svg>
+  </div>
+  <div class="hero-deco-6">
+    <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5L8 0Z" fill="rgba(255,255,255,0.25)"/></svg>
+  </div>
+
+  <div class="hero-badge">🎁 期間限定キャンペーン</div>
+  <p class="hero-period">2025.○.○（○）〜 ○.○（○）</p>
+  <p class="hero-gift-label">ライバー登録で全員もらえる</p>
+  <div class="hero-gift-amount">
+    <span class="amazon">Amazonギフト券</span>
+    <span class="yen-mark">¥</span><span class="yen">3,000</span>
+    <span class="present">プレゼント！</span>
+  </div>
+  <p class="hero-catch">
+    配信未経験でもOK。<br>
+    <em>登録＋テスト配信</em>で全員に届きます。
+  </p>
+  <div class="cta-wrap">
+    <a href="#" class="cta-btn">今すぐ無料で応募する</a>
+    <p class="cta-sub">※ 登録・配信ともに無料です</p>
+  </div>
+
+  <!-- Hero silhouette visual -->
+  <div class="hero-visual">
+    <div class="hero-glow"></div>
+    <div class="hero-silhouette-wrap">
+      <svg width="160" height="210" viewBox="0 0 160 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Girl silhouette with phone, streaming pose -->
+        <!-- Hair -->
+        <ellipse cx="80" cy="38" rx="28" ry="30" fill="rgba(255,255,255,0.9)"/>
+        <path d="M52 35C52 35 48 55 50 70C50 70 56 68 60 52L55 38Z" fill="rgba(255,255,255,0.9)"/>
+        <path d="M108 35C108 35 112 55 110 70C110 70 104 68 100 52L105 38Z" fill="rgba(255,255,255,0.9)"/>
+        <!-- Long hair strands -->
+        <path d="M54 50C50 65 46 90 48 105" stroke="rgba(255,255,255,0.7)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M106 50C110 65 114 90 112 105" stroke="rgba(255,255,255,0.7)" stroke-width="3" stroke-linecap="round"/>
+        <!-- Face area -->
+        <ellipse cx="80" cy="42" rx="20" ry="22" fill="rgba(255,255,255,0.95)"/>
+        <!-- Eyes -->
+        <ellipse cx="72" cy="40" rx="3.5" ry="4" fill="var(--primary)"/>
+        <ellipse cx="88" cy="40" rx="3.5" ry="4" fill="var(--primary)"/>
+        <circle cx="73.5" cy="39" r="1.5" fill="white"/>
+        <circle cx="89.5" cy="39" r="1.5" fill="white"/>
+        <!-- Mouth smile -->
+        <path d="M74 50C76 53 84 53 86 50" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <!-- Blush -->
+        <ellipse cx="68" cy="48" rx="4" ry="2.5" fill="rgba(255,77,141,0.2)"/>
+        <ellipse cx="92" cy="48" rx="4" ry="2.5" fill="rgba(255,77,141,0.2)"/>
+        <!-- Body -->
+        <path d="M65 62C65 62 60 75 58 95L66 98L72 75L80 70L88 75L94 98L102 95C100 75 95 62 95 62C95 62 88 58 80 58C72 58 65 62 65 62Z" fill="rgba(255,255,255,0.9)"/>
+        <!-- Arms -->
+        <path d="M58 75C52 82 48 95 50 100" stroke="rgba(255,255,255,0.9)" stroke-width="8" stroke-linecap="round"/>
+        <!-- Right arm holding phone up -->
+        <path d="M102 75C108 72 115 65 118 58" stroke="rgba(255,255,255,0.9)" stroke-width="8" stroke-linecap="round"/>
+        <!-- Phone in hand -->
+        <rect x="110" y="38" width="22" height="36" rx="4" fill="rgba(255,255,255,0.95)" stroke="var(--primary)" stroke-width="1.5"/>
+        <rect x="113" y="42" width="16" height="24" rx="2" fill="var(--primary)" opacity="0.15"/>
+        <circle cx="121" cy="71" r="1.5" fill="var(--primary)" opacity="0.4"/>
+        <!-- LIVE indicator on phone -->
+        <rect x="114" y="44" width="14" height="5" rx="2" fill="var(--primary)" opacity="0.8"/>
+        <text x="121" y="48" font-size="3.5" fill="white" text-anchor="middle" font-weight="bold" font-family="sans-serif">LIVE</text>
+        <!-- Skirt -->
+        <path d="M62 95C58 120 55 145 50 165L110 165C105 145 102 120 98 95Z" fill="rgba(255,255,255,0.85)"/>
+        <!-- Legs -->
+        <path d="M62 165L58 208" stroke="rgba(255,255,255,0.9)" stroke-width="8" stroke-linecap="round"/>
+        <path d="M98 165L102 208" stroke="rgba(255,255,255,0.9)" stroke-width="8" stroke-linecap="round"/>
+        <!-- Stars around -->
+        <path d="M35 30L36.5 34L40 35L36.5 36L35 40L33.5 36L30 35L33.5 34Z" fill="var(--secondary)" opacity="0.7"/>
+        <path d="M130 85L131 88L134 89L131 90L130 93L129 90L126 89L129 88Z" fill="var(--secondary)" opacity="0.5"/>
+        <path d="M42 120L43 122.5L46 123.5L43 124.5L42 127L41 124.5L38 123.5L41 122.5Z" fill="var(--secondary)" opacity="0.4"/>
+        <!-- Heart icons floating -->
+        <path d="M25 60C25 56 30 54 32 58C34 54 39 56 39 60C39 66 32 70 32 70C32 70 25 66 25 60Z" fill="rgba(255,77,141,0.5)"/>
+        <path d="M125 100C125 97 129 95.5 130.5 98.5C132 95.5 136 97 136 100C136 104 130.5 107 130.5 107C130.5 107 125 104 125 100Z" fill="rgba(255,184,0,0.5)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 2. WHY NOW ==================== -->
+<section class="why-now">
+  <div class="inner">
+    <div class="section-label"><span>FOR YOU</span></div>
+    <h2 class="section-title">こんなこと、<br>思ったことはありませんか？</h2>
+
+    <div class="why-now-illust">
+      <svg width="120" height="100" viewBox="0 0 120 100" fill="none">
+        <!-- Thinking person with speech bubbles -->
+        <ellipse cx="60" cy="30" rx="18" ry="20" fill="#FFE0EC"/>
+        <ellipse cx="60" cy="33" rx="14" ry="15" fill="#FFE0EC"/>
+        <ellipse cx="53" cy="31" rx="2.5" ry="3" fill="var(--text-main)"/>
+        <ellipse cx="67" cy="31" rx="2.5" ry="3" fill="var(--text-main)"/>
+        <circle cx="54" cy="30" r="1" fill="white"/>
+        <circle cx="68" cy="30" r="1" fill="white"/>
+        <path d="M56 40C57.5 42 62.5 42 64 40" stroke="var(--text-sub)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <!-- Hair -->
+        <path d="M42 28C42 15 50 8 60 8C70 8 78 15 78 28" stroke="#FFB3D1" stroke-width="3" fill="none"/>
+        <path d="M42 28C40 35 40 42 44 50" stroke="#FFB3D1" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M78 28C80 35 80 42 76 50" stroke="#FFB3D1" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <!-- Body hint -->
+        <path d="M48 48C48 48 52 52 60 52C68 52 72 48 72 48" stroke="#FFE0EC" stroke-width="6" stroke-linecap="round"/>
+        <!-- Thought bubbles -->
+        <circle cx="92" cy="22" r="3" fill="#F0F0F2"/>
+        <circle cx="98" cy="14" r="4" fill="#F0F0F2"/>
+        <rect x="88" y="2" width="30" height="14" rx="7" fill="#F0F0F2"/>
+        <text x="103" y="11" font-size="5" fill="var(--text-sub)" text-anchor="middle" font-family="sans-serif">🤔 ？</text>
+        <!-- Sparkle -->
+        <path d="M20 20L21.5 24L25 25L21.5 26L20 30L18.5 26L15 25L18.5 24Z" fill="var(--secondary)" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <div class="why-now-message">
+      <p>
+        「好きなことを仕事にしたいけど、<br>何から始めればいいかわからない」<br><br>
+        「顔出しの配信、ちょっと興味はある。<br>でも<strong>一人でやるのは不安</strong>…」<br><br>
+        「スキマ時間に、<br>スマホひとつで収入がほしい」
+      </p>
+      <span class="emphasis">
+        そのすべてに、<br>私たちが応えます。
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. MERIT ==================== -->
+<section class="merit">
+  <!-- Background decoration -->
+  <div style="position:absolute;top:20px;right:-10px;opacity:.06;">
+    <svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" stroke="var(--primary)" stroke-width="2" fill="none"/></svg>
+  </div>
+  <div style="position:absolute;bottom:40px;left:-20px;opacity:.05;">
+    <svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" stroke="var(--secondary)" stroke-width="2" fill="none"/></svg>
+  </div>
+
+  <div class="section-label"><span>MERIT</span></div>
+  <h2 class="section-title">事務所に所属する<br><span class="pink">4つのメリット</span></h2>
+  <p class="section-lead">
+    「個人で配信する」のと<br>「事務所に入って配信する」のでは、<br>
+    サポート体制も収入も全く違います。
+  </p>
+
+  <div class="merit-list">
+    <div class="merit-card">
+      <div class="merit-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" fill="#FFF0F5"/>
+          <circle cx="24" cy="18" r="7" fill="var(--primary)" opacity="0.2"/>
+          <ellipse cx="24" cy="18" rx="5" ry="5.5" fill="var(--primary)" opacity="0.3"/>
+          <path d="M14 36C14 30 18 26 24 26C30 26 34 30 34 36" stroke="var(--primary)" stroke-width="2" fill="none" opacity="0.3"/>
+          <path d="M32 18L36 14" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <path d="M36 14L38 16" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <path d="M36 14L38 12" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="merit-num">MERIT 01</div>
+      <h3>専属マネージャーが<br>あなたに付きます</h3>
+      <p>配信の進め方、リスナーとの向き合い方、伸びるコツまで、マンツーマンで相談できる体制があります。初回配信から一人にはしません。</p>
+    </div>
+
+    <div class="merit-card">
+      <div class="merit-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" fill="#F0EEFF"/>
+          <rect x="14" y="14" width="20" height="20" rx="4" fill="var(--accent)" opacity="0.15"/>
+          <path d="M19 24L22 27L29 20" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+          <path d="M24 10L24 14" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+          <path d="M34 14L31 17" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="merit-num">MERIT 02</div>
+      <h3>配信未経験でも<br>段階的に始められます</h3>
+      <p>「何を話せばいいかわからない」——そんな方でも大丈夫です。台本のヒント、配信時間帯の選び方、プロフィールの作り方まで、事務所がサポートします。</p>
+      <div class="tag-row">
+        <span class="mini-tag">配信マニュアル完備</span>
+        <span class="mini-tag">研修あり</span>
+      </div>
+    </div>
+
+    <div class="merit-card">
+      <div class="merit-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" fill="#FFF8E0"/>
+          <path d="M24 12L27 20H35L29 25L31 33L24 28L17 33L19 25L13 20H21Z" fill="var(--secondary)" opacity="0.25"/>
+          <path d="M24 14L26 20H32L27 24L29 30L24 26L19 30L21 24L16 20H22Z" fill="var(--secondary)" opacity="0.15" stroke="var(--secondary)" stroke-width="1" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="merit-num">MERIT 03</div>
+      <h3>活躍するほど<br>チャンスが広がります</h3>
+      <p>事務所内イベントでの入賞、企業コラボの斡旋、広告出演——配信を続けることで得られる仕事の幅は、個人活動とは比較になりません。</p>
+      <div class="tag-row">
+        <span class="mini-tag">企業コラボ</span>
+        <span class="mini-tag">広告出演</span>
+        <span class="mini-tag">事務所イベント</span>
+      </div>
+    </div>
+
+    <div class="merit-card">
+      <div class="merit-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" fill="#EFFFFA"/>
+          <path d="M16 30V22L24 16L32 22V30L24 36Z" fill="var(--mint)" opacity="0.15" stroke="var(--mint)" stroke-width="1.5" opacity="0.3"/>
+          <circle cx="24" cy="26" r="4" fill="var(--mint)" opacity="0.2"/>
+          <text x="24" y="28.5" font-size="6" fill="var(--mint)" text-anchor="middle" font-weight="bold" opacity="0.5" font-family="sans-serif">✓</text>
+        </svg>
+      </div>
+      <div class="merit-num">MERIT 04</div>
+      <h3>これまで○○○名以上の<br>ライバーをサポートしてきました</h3>
+      <p>積み上げてきた運営実績があるからこそ、「このタイプの方はこう伸びやすい」という知見を基に、あなたに合った戦略を一緒に考えられます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIAGNOSTIC BANNER 1 (after Merit, before main CTA) ===== -->
+<div class="diag-placement-1" style="padding:0 20px 4px;background:var(--bg-warm);">
+  <a href="shindan.html" class="diag-banner-inner" style="max-width:400px;margin:0 auto;">
+    <div class="diag-banner-icon">🔮</div>
+    <div class="diag-banner-text">
+      <div class="diag-banner-label">1分で診断</div>
+      <div class="diag-banner-title">あなたはどんな<br>配信者タイプ？</div>
+      <div class="diag-banner-sub">5問でわかるライバー適性診断</div>
+    </div>
+    <div class="diag-banner-arrow">→</div>
+  </a>
+  <div class="diag-banner-context"><p>まだ迷ってる方はまずこちらから</p></div>
+</div>
+
+<!-- ===== MID CTA ===== -->
+<div class="mid-cta">
+  <div style="position:absolute;top:50%;left:5%;opacity:.08;"><svg width="40" height="40"><circle cx="20" cy="20" r="18" stroke="var(--primary)" stroke-width="2" fill="none"/></svg></div>
+  <div style="position:absolute;top:30%;right:8%;opacity:.06;"><svg width="24" height="24" viewBox="0 0 16 16"><path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5Z" fill="var(--secondary)"/></svg></div>
+  <div class="cta-wrap">
+    <a href="#" class="cta-btn">まずは無料で応募してみる</a>
+    <p class="cta-sub">※ 応募後に事務所スタッフとお話しいただけます</p>
+  </div>
+</div>
+
+<!-- ==================== 4. REVENUE ==================== -->
+<section class="revenue">
+  <div class="section-label purple"><span>REVENUE</span></div>
+  <h2 class="section-title">報酬は<span class="purple">「基本 + ボーナス」</span>の<br>2段構えです</h2>
+
+  <div class="revenue-highlight">
+    <p class="rev-label">ギフト報酬の還元率</p>
+    <p class="rev-big">100<span>%</span></p>
+    <p class="rev-sub">リスナーからのギフトは全額あなたのもの。<br>さらに、事務所独自のボーナスが上乗せされます。</p>
+  </div>
+
+  <div class="revenue-cards">
+    <div class="rev-card">
+      <div class="rev-icon">💰</div>
+      <div>
+        <h4>アプリ内ギフト → そのまま換金OK</h4>
+        <p>獲得したギフトはアプリ上でご自身の操作で換金できます。事務所に引かれることはありません。</p>
+      </div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-icon">📈</div>
+      <div>
+        <h4>活躍に応じて事務所ボーナスが増加</h4>
+        <p>獲得ギフトが増えるほど、ボーナスの還元額も大きくなる設計です。頑張った分だけ、きちんと返ってくる仕組みにしています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 5. SUPPORT ==================== -->
+<section class="support">
+  <div style="position:absolute;top:10px;right:-15px;opacity:.06;"><svg width="100" height="100"><circle cx="50" cy="50" r="48" stroke="var(--mint)" stroke-width="2" fill="none"/></svg></div>
+
+  <div class="section-label mint"><span>SUPPORT</span></div>
+  <h2 class="section-title">所属ライバーへの<br><span class="mint">サポート体制</span></h2>
+  <p class="section-lead">配信を「続けられる環境」を<br>事務所が用意します。</p>
+
+  <div class="support-grid">
+    <div class="support-item">
+      <div class="support-icon">🎙️</div>
+      <h4>配信ノウハウの<br>共有</h4>
+      <p>伸びるジャンル、リスナーとの距離感、配信時間帯の選び方など</p>
+    </div>
+    <div class="support-item">
+      <div class="support-icon">👤</div>
+      <h4>専属マネージャー</h4>
+      <p>困ったときに相談できる担当がつきます</p>
+    </div>
+    <div class="support-item">
+      <div class="support-icon">🏆</div>
+      <h4>事務所内<br>イベント</h4>
+      <p>入賞者は事務所コンテンツに出演できます</p>
+    </div>
+    <div class="support-item">
+      <div class="support-icon">🤝</div>
+      <h4>企業案件の<br>優先紹介</h4>
+      <p>コラボ・広告出演など活躍の場を広げます</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. VOICE ==================== -->
+<section class="voice">
+  <div class="section-label"><span>VOICE</span></div>
+  <h2 class="section-title">所属ライバーの<span class="pink">声</span></h2>
+  <p class="section-lead">※ ヒアリング後、実際のインタビュー内容に差し替えます</p>
+
+  <div class="voice-list">
+    <div class="voice-card">
+      <div class="voice-profile">
+        <div class="voice-avatar">
+          <svg width="48" height="48" viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="24" fill="#FFE0EC"/>
+            <ellipse cx="24" cy="20" rx="9" ry="10" fill="#FFB3D1"/>
+            <ellipse cx="24" cy="22" rx="7" ry="8" fill="#FFCCE0"/>
+            <ellipse cx="21" cy="21" rx="1.5" ry="2" fill="var(--text-main)"/>
+            <ellipse cx="27" cy="21" rx="1.5" ry="2" fill="var(--text-main)"/>
+            <path d="M22 26C23 27.5 25 27.5 26 26" stroke="var(--primary)" stroke-width="1" stroke-linecap="round" fill="none"/>
+            <path d="M15 18C15 10 19 6 24 6C29 6 33 10 33 18" stroke="#FFB3D1" stroke-width="2" fill="none"/>
+            <path d="M15 18C13 22 14 28 16 32" stroke="#FFB3D1" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M33 18C35 22 34 28 32 32" stroke="#FFB3D1" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M17 34C17 34 20 36 24 36C28 36 31 34 31 34" stroke="#FFCCE0" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="voice-name">○○さん（20代・女性）</div>
+          <div class="voice-meta">配信歴6ヶ月</div>
+        </div>
+      </div>
+      <blockquote>完全に未経験で始めましたが、最初の1週間はマネージャーさんが毎日コメントをくれて、配信後に振り返りもしてもらえました。一人だったら絶対続いてなかったと思います。</blockquote>
+    </div>
+
+    <div class="voice-card">
+      <div class="voice-profile">
+        <div class="voice-avatar">
+          <svg width="48" height="48" viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="24" fill="#E8E0FF"/>
+            <ellipse cx="24" cy="20" rx="8" ry="9" fill="#C4B5FD"/>
+            <ellipse cx="24" cy="22" rx="7" ry="8" fill="#DDD6FE"/>
+            <ellipse cx="21" cy="21" rx="1.5" ry="2" fill="var(--text-main)"/>
+            <ellipse cx="27" cy="21" rx="1.5" ry="2" fill="var(--text-main)"/>
+            <path d="M22 26C23 27 25 27 26 26" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" fill="none"/>
+            <path d="M16 16C17 10 20 7 24 7C28 7 31 10 32 16" stroke="#C4B5FD" stroke-width="2.5" fill="none"/>
+            <rect x="15" y="14" width="18" height="4" rx="2" fill="#C4B5FD"/>
+            <path d="M17 34C17 34 20 36 24 36C28 36 31 34 31 34" stroke="#DDD6FE" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="voice-name">○○さん（20代・男性）</div>
+          <div class="voice-meta">配信歴1年</div>
+        </div>
+      </div>
+      <blockquote>副業として始めたんですが、3ヶ月目くらいから本業の月収を超える月が出てきました。事務所の企業案件紹介がきっかけで、今は配信を本業にしています。</blockquote>
+    </div>
+
+    <div class="voice-card">
+      <div class="voice-profile">
+        <div class="voice-avatar">
+          <svg width="48" height="48" viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="24" fill="#E0FFF5"/>
+            <ellipse cx="24" cy="20" rx="8" ry="9" fill="#86EFAC"/>
+            <ellipse cx="24" cy="22" rx="7" ry="8" fill="#BBF7D0"/>
+            <ellipse cx="21" cy="21" rx="1.5" ry="2" fill="var(--text-main)"/>
+            <ellipse cx="27" cy="21" rx="1.5" ry="2" fill="var(--text-main)"/>
+            <path d="M21 26C22.5 28 25.5 28 27 26" stroke="var(--mint)" stroke-width="1" stroke-linecap="round" fill="none"/>
+            <path d="M15 17C15 9 19 5 24 5C29 5 33 9 33 17" stroke="#86EFAC" stroke-width="2" fill="none"/>
+            <path d="M33 14C36 15 37 17 36 19" stroke="#86EFAC" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M15 14C12 15 11 17 12 19" stroke="#86EFAC" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M17 34C17 34 20 36 24 36C28 36 31 34 31 34" stroke="#BBF7D0" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="voice-name">○○さん（10代・女性）</div>
+          <div class="voice-meta">配信歴3ヶ月</div>
+        </div>
+      </div>
+      <blockquote>最初は友達に勧められて軽い気持ちで始めたんですけど、リスナーさんと話すのが楽しくて毎日配信してます。先月は初めてランキングにも入れました。</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 7. STEPS ==================== -->
+<section class="steps">
+  <div class="section-label"><span>HOW TO</span></div>
+  <h2 class="section-title"><span class="pink">3ステップ</span>でカンタン</h2>
+
+  <div class="steps-list">
+    <div class="step-item">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>このページから応募する</h3>
+        <p>下のボタンから応募フォームを送信してください。</p>
+      </div>
+    </div>
+    <div class="step-arrow">▼</div>
+    <div class="step-item">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>招待コードを受け取り、テスト配信</h3>
+        <p>事務所から招待コードが届きます。アプリでテスト配信を行えば登録完了です。</p>
+      </div>
+    </div>
+    <div class="step-arrow">▼</div>
+    <div class="step-item">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>ギフト券を受け取る</h3>
+        <p>登録完了後、○営業日以内にAmazonギフト券3,000円分をお届けします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 8. CAMPAIGN DETAIL ==================== -->
+<section class="campaign-detail">
+  <div class="section-label"><span>DETAIL</span></div>
+  <h2 class="section-title">キャンペーン<span class="pink">詳細</span></h2>
+
+  <div class="detail-card">
+    <div class="detail-row">
+      <div class="detail-label">特典</div>
+      <div class="detail-value">Amazonギフト券 3,000円分</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">条件</div>
+      <div class="detail-value">新規登録 ＋ テスト配信の完了<br><small>※ 過去に登録履歴がある方は対象外</small></div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">期間</div>
+      <div class="detail-value">2025年○月○日 〜 ○月○日</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">届け方</div>
+      <div class="detail-value">登録メールアドレスへ○営業日以内</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">対象</div>
+      <div class="detail-value">18歳以上の方<br><small>※ 高校生を除く</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 9. FAQ ==================== -->
+<section class="faq">
+  <div class="section-label"><span>FAQ</span></div>
+  <h2 class="section-title">よくある<span class="pink">質問</span></h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-icon">Q.</span><span>配信経験がなくても応募できますか？</span></div>
+      <div class="faq-a">はい、応募者の多くが配信未経験からスタートしています。専属マネージャーが一からサポートします。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-icon">Q.</span><span>副業としてでも大丈夫ですか？</span></div>
+      <div class="faq-a">もちろん大丈夫です。配信のペースはご自身の生活に合わせて調整できます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-icon">Q.</span><span>所属に費用はかかりますか？</span></div>
+      <div class="faq-a">登録・所属ともに一切費用はかかりません。スマートフォンがあればすぐに始められます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-icon">Q.</span><span>ギフト券はいつ届きますか？</span></div>
+      <div class="faq-a">テスト配信完了の確認後、○営業日以内にご登録のメールアドレスへお届けします。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-icon">Q.</span><span>途中でやめることはできますか？</span></div>
+      <div class="faq-a">はい、いつでも退所可能です。まずは気軽にチャレンジしてみてください。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIAGNOSTIC BANNER 2 (after FAQ, for users still undecided) ===== -->
+<div class="diag-placement-2" style="background:var(--bg-warm);">
+  <a href="shindan.html" class="diag-banner-inner" style="max-width:400px;margin:0 auto;">
+    <div class="diag-banner-icon">🔮</div>
+    <div class="diag-banner-text">
+      <div class="diag-banner-label">無料診断</div>
+      <div class="diag-banner-title">自分に合った配信スタイルを<br>チェックしてみる</div>
+      <div class="diag-banner-sub">5つの質問に答えるだけ（約1分）</div>
+    </div>
+    <div class="diag-banner-arrow">→</div>
+  </a>
+  <div class="diag-banner-context"><p>応募前に自分のタイプを知りたい方へ</p></div>
+</div>
+
+<!-- ==================== 10. BOTTOM CTA ==================== -->
+<section class="bottom-cta">
+  <div style="position:absolute;top:15%;left:8%;animation:twinkle 2s ease-in-out infinite;"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5Z" fill="rgba(255,255,255,0.3)"/></svg></div>
+  <div style="position:absolute;bottom:20%;right:10%;animation:twinkle 2s ease-in-out infinite .8s;"><svg width="10" height="10" viewBox="0 0 16 16"><path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5Z" fill="rgba(255,255,255,0.25)"/></svg></div>
+
+  <p class="bottom-cta-title">キャンペーンは○月○日まで。<br>この機会に、一歩踏み出してみませんか？</p>
+  <p class="bottom-cta-sub">あなたの「やってみたい」を事務所が全力でサポートします。</p>
+  <div class="cta-wrap">
+    <a href="#" class="cta-btn white">今すぐ無料で応募する</a>
+    <p class="cta-sub">※ 応募後、事務所スタッフからご連絡します</p>
+  </div>
+</section>
+
+<!-- ==================== NOTES ==================== -->
+<div class="notes">
+  <div class="notes-inner">
+    <h4>注意事項</h4>
+    <ul>
+      <li>本キャンペーンは予告なく終了・変更する場合があります。</li>
+      <li>おひとり様1回限りのご参加となります。</li>
+      <li>不正な登録が確認された場合、ギフト券の付与を取り消すことがあります。</li>
+      <li>18歳未満の方（高校生を含む）はご応募いただけません。</li>
+      <li>キャンペーンの詳細は事務所スタッフにお問い合わせください。</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 ○○○○事務所 All Rights Reserved.</p>
+</footer>
+
+<!-- Floating diagnostic banner -->
+<div class="float-diag" id="floatDiag">
+  <div class="float-diag-close" id="floatDiagClose">✕</div>
+  <a href="shindan.html" class="float-diag-link">
+    <div class="float-diag-icon">🔮</div>
+    <div class="float-diag-text">
+      <div class="float-diag-title">適性診断してみる</div>
+      <div class="float-diag-sub">あなたの配信者タイプは？</div>
+    </div>
+  </a>
+</div>
+
+<script>
+(function(){
+  const fab = document.getElementById('floatDiag');
+  const closeBtn = document.getElementById('floatDiagClose');
+  let dismissed = false;
+
+  // Hide in hero area and near bottom CTA
+  function onScroll(){
+    if(dismissed){ fab.classList.add('hidden'); return; }
+    const scrollY = window.scrollY;
+    const heroH = document.querySelector('.hero').offsetHeight;
+    const docH = document.documentElement.scrollHeight;
+    const winH = window.innerHeight;
+    const nearBottom = scrollY + winH > docH - 400;
+    if(scrollY < heroH || nearBottom){
+      fab.classList.add('hidden');
+    } else {
+      fab.classList.remove('hidden');
+    }
+  }
+
+  closeBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    dismissed = true;
+    fab.classList.add('hidden');
+  });
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ライバー適性診断｜あなたはどんな配信者タイプ？</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #FF4D8D;
+    --primary-dark: #E8357A;
+    --secondary: #FFB800;
+    --accent: #6C5CE7;
+    --mint: #00D2A0;
+    --bg-light: #FFF8FA;
+    --text-main: #2D2D2D;
+    --text-sub: #666666;
+    --text-light: #999999;
+    --white: #FFFFFF;
+    --gradient-hero: linear-gradient(135deg, #FF4D8D 0%, #FF8E53 50%, #FFB800 100%);
+    --gradient-cta: linear-gradient(135deg, #FF4D8D 0%, #E8357A 100%);
+    --shadow: 0 4px 20px rgba(255,77,141,0.10);
+    --radius: 16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--text-main);background:var(--bg-light);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;}
+
+  .container{max-width:420px;margin:0 auto;padding:0 20px;}
+
+  /* Header */
+  .diag-header{background:var(--gradient-hero);padding:40px 20px 32px;text-align:center;position:relative;overflow:hidden;}
+  .diag-header::before{content:'';position:absolute;top:-40%;left:-30%;width:160%;height:180%;background:radial-gradient(ellipse at 25% 15%,rgba(255,255,255,.18) 0%,transparent 55%);pointer-events:none;}
+  .diag-header h1{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:22px;color:var(--white);line-height:1.5;margin-bottom:8px;position:relative;}
+  .diag-header p{color:rgba(255,255,255,.85);font-size:13px;line-height:1.7;position:relative;}
+  .diag-header .icon-wrap{margin-bottom:16px;position:relative;}
+
+  /* Progress */
+  .progress-wrap{background:var(--white);padding:16px 20px;border-bottom:1px solid #f0e8ec;position:sticky;top:0;z-index:10;}
+  .progress-inner{max-width:420px;margin:0 auto;}
+  .progress-text{font-size:11px;font-weight:700;color:var(--text-light);margin-bottom:6px;text-align:center;}
+  .progress-text span{color:var(--primary);}
+  .progress-bar{height:6px;background:#F0E8EC;border-radius:3px;overflow:hidden;}
+  .progress-fill{height:100%;background:var(--gradient-hero);border-radius:3px;transition:width .4s ease;}
+
+  /* Question screens */
+  .screen{display:none;padding:32px 0 40px;animation:fadeIn .4s ease;}
+  .screen.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+  .q-number{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:900;font-size:12px;color:var(--primary);letter-spacing:.1em;margin-bottom:8px;text-align:center;}
+  .q-text{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:18px;text-align:center;line-height:1.6;margin-bottom:24px;}
+
+  .choices{display:flex;flex-direction:column;gap:10px;}
+  .choice-btn{background:var(--white);border:2px solid #F0E8EC;border-radius:12px;padding:16px 18px;font-size:14px;font-weight:500;color:var(--text-main);cursor:pointer;transition:all .2s;text-align:left;display:flex;align-items:center;gap:12px;line-height:1.5;}
+  .choice-btn:hover{border-color:var(--primary);background:#FFF0F5;transform:translateY(-1px);box-shadow:var(--shadow);}
+  .choice-btn:active{transform:translateY(0);}
+  .choice-icon{font-size:20px;flex-shrink:0;}
+  .choice-btn .choice-label{font-weight:700;display:block;}
+  .choice-btn .choice-sub{font-size:12px;color:var(--text-sub);display:block;margin-top:2px;}
+
+  /* Result screen */
+  .result-screen{display:none;padding:32px 0 40px;animation:fadeIn .5s ease;}
+  .result-screen.active{display:block;}
+
+  .result-card{background:var(--white);border-radius:var(--radius);padding:28px 22px;box-shadow:var(--shadow);text-align:center;margin-bottom:24px;position:relative;overflow:hidden;}
+  .result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient-hero);}
+
+  .result-type-badge{display:inline-block;font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:11px;padding:4px 14px;border-radius:50px;margin-bottom:12px;letter-spacing:.08em;}
+  .result-card .result-icon{font-size:48px;margin-bottom:12px;display:block;}
+  .result-card h2{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:22px;margin-bottom:8px;line-height:1.4;}
+  .result-card .result-desc{font-size:13px;line-height:1.85;color:var(--text-sub);text-align:left;margin-top:16px;}
+
+  .result-traits{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0;}
+  .result-trait{font-size:11px;font-weight:700;padding:4px 12px;border-radius:50px;background:#F5F5F5;color:var(--text-sub);}
+
+  .result-advice{background:#FFF8EE;border-radius:12px;padding:18px;margin-bottom:24px;text-align:left;}
+  .result-advice h3{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:14px;margin-bottom:8px;color:var(--secondary);}
+  .result-advice p{font-size:12px;line-height:1.8;color:var(--text-sub);}
+
+  /* Result CTA */
+  .result-cta-section{text-align:center;margin-top:28px;}
+  .result-cta-lead{font-size:14px;font-weight:700;line-height:1.7;margin-bottom:16px;}
+  .result-cta-lead span{color:var(--primary);}
+
+  .cta-btn{display:block;width:100%;max-width:340px;margin:0 auto;padding:18px 24px;background:var(--gradient-cta);color:var(--white);font-family:'M PLUS Rounded 1c',sans-serif;font-weight:800;font-size:17px;text-decoration:none;border-radius:60px;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(255,77,141,.35);position:relative;overflow:hidden;letter-spacing:.04em;transition:transform .2s,box-shadow .2s;}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,77,141,.45);}
+  .cta-btn::after{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 2.5s infinite;}
+  @keyframes shimmer{0%{left:-100%}100%{left:100%}}
+  .cta-sub{font-size:11px;color:var(--text-light);margin-top:8px;}
+
+  .back-link{display:inline-block;margin-top:20px;font-size:12px;color:var(--text-light);text-decoration:none;padding:8px 16px;}
+  .back-link:hover{color:var(--text-sub);}
+
+  /* Gift card incentive box */
+  .gift-incentive{background:linear-gradient(135deg,#FFF5F8 0%,#FFF8EE 100%);border:1.5px solid rgba(255,77,141,.12);border-radius:14px;padding:18px 20px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+  .gift-incentive::before{content:'';position:absolute;top:-20px;right:-20px;width:60px;height:60px;background:radial-gradient(circle,rgba(255,184,0,.1),transparent);border-radius:50%;}
+  .gift-incentive .gift-label{font-size:11px;color:var(--text-sub);font-weight:500;margin-bottom:4px;}
+  .gift-incentive .gift-amount{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:900;font-size:26px;color:var(--primary);line-height:1.3;}
+  .gift-incentive .gift-amount .small{font-size:14px;font-weight:700;}
+  .gift-incentive .gift-note{font-size:11px;color:var(--text-light);margin-top:4px;}
+
+  /* Share hint */
+  .share-hint{margin-top:20px;padding:14px;background:#F8F0FF;border-radius:10px;text-align:center;}
+  .share-hint p{font-size:11px;color:var(--accent);font-weight:500;}
+
+  /* Type colors */
+  .type-entertainer .result-type-badge{background:#FFF0F5;color:var(--primary);}
+  .type-entertainer h2{color:var(--primary);}
+  .type-healer .result-type-badge{background:#F0EEFF;color:var(--accent);}
+  .type-healer h2{color:var(--accent);}
+  .type-creator .result-type-badge{background:#FFF8E0;color:#E6A600;}
+  .type-creator h2{color:#D49B00;}
+  .type-influencer .result-type-badge{background:#EFFFFA;color:var(--mint);}
+  .type-influencer h2{color:var(--mint);}
+
+  footer{background:#1a1a2e;color:rgba(255,255,255,.4);text-align:center;padding:20px;font-size:10px;margin-top:auto;}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="diag-header">
+  <div class="icon-wrap">
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+      <circle cx="32" cy="32" r="30" fill="rgba(255,255,255,0.15)"/>
+      <text x="32" y="40" font-size="28" text-anchor="middle">🔮</text>
+    </svg>
+  </div>
+  <h1>あなたはどんな<br>配信者タイプ？</h1>
+  <p>5つの質問に答えるだけ（約1分）<br>あなたに合った配信スタイルがわかります</p>
+</div>
+
+<!-- Progress bar -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-text" id="progressText"><span>Q1</span> / 5</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== Q1 ===== -->
+  <div class="screen active" id="q1">
+    <div class="q-number">QUESTION 01</div>
+    <div class="q-text">友達と遊ぶとき、<br>あなたはどのポジション？</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(1,'a')">
+        <span class="choice-icon">🎤</span>
+        <div><span class="choice-label">とにかく盛り上げる人</span><span class="choice-sub">話題を振って笑いを取りにいく</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(1,'b')">
+        <span class="choice-icon">👂</span>
+        <div><span class="choice-label">聞き上手で頼られる人</span><span class="choice-sub">相手の話をじっくり聞くのが好き</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(1,'c')">
+        <span class="choice-icon">📸</span>
+        <div><span class="choice-label">企画やお店選びを担当する人</span><span class="choice-sub">リサーチしてプランを立てるのが得意</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(1,'d')">
+        <span class="choice-icon">✨</span>
+        <div><span class="choice-label">独自のセンスで存在感がある人</span><span class="choice-sub">「あなたらしい」とよく言われる</span></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== Q2 ===== -->
+  <div class="screen" id="q2">
+    <div class="q-number">QUESTION 02</div>
+    <div class="q-text">SNSに投稿するとしたら、<br>どんな内容が多い？</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(2,'a')">
+        <span class="choice-icon">😂</span>
+        <div><span class="choice-label">面白いこと・ネタ系</span><span class="choice-sub">フォロワーの反応が楽しい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(2,'b')">
+        <span class="choice-icon">🌸</span>
+        <div><span class="choice-label">日常の何気ないひとコマ</span><span class="choice-sub">共感してもらえると嬉しい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(2,'c')">
+        <span class="choice-icon">🎨</span>
+        <div><span class="choice-label">作品や制作物の紹介</span><span class="choice-sub">自分が作ったものを見てほしい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(2,'d')">
+        <span class="choice-icon">💡</span>
+        <div><span class="choice-label">おすすめ・レビュー系</span><span class="choice-sub">いいものを広めたい気持ちが強い</span></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== Q3 ===== -->
+  <div class="screen" id="q3">
+    <div class="q-number">QUESTION 03</div>
+    <div class="q-text">ライブ配信を始めるなら、<br>一番やってみたいのは？</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(3,'a')">
+        <span class="choice-icon">💬</span>
+        <div><span class="choice-label">リスナーとワイワイ雑談</span><span class="choice-sub">みんなで楽しい時間を作りたい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(3,'b')">
+        <span class="choice-icon">🌙</span>
+        <div><span class="choice-label">寝る前のまったりトーク</span><span class="choice-sub">落ち着いた空間で話を聞いてあげたい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(3,'c')">
+        <span class="choice-icon">🎵</span>
+        <div><span class="choice-label">歌やパフォーマンスの配信</span><span class="choice-sub">特技を活かして自分を表現したい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(3,'d')">
+        <span class="choice-icon">📢</span>
+        <div><span class="choice-label">おすすめ商品やスポットの紹介</span><span class="choice-sub">自分の好きなものを伝えたい</span></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== Q4 ===== -->
+  <div class="screen" id="q4">
+    <div class="q-number">QUESTION 04</div>
+    <div class="q-text">どのくらいのペースで<br>配信できそう？</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(4,'a')">
+        <span class="choice-icon">🔥</span>
+        <div><span class="choice-label">ほぼ毎日いける</span><span class="choice-sub">楽しそうだからどんどんやりたい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(4,'b')">
+        <span class="choice-icon">📅</span>
+        <div><span class="choice-label">週3〜4回くらい</span><span class="choice-sub">無理なく続けられるペースで</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(4,'c')">
+        <span class="choice-icon">🌿</span>
+        <div><span class="choice-label">週1〜2回から始めたい</span><span class="choice-sub">まずはお試しで様子を見ながら</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(4,'d')">
+        <span class="choice-icon">🤷</span>
+        <div><span class="choice-label">わからないけど興味はある</span><span class="choice-sub">やってみないとわからない</span></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== Q5 ===== -->
+  <div class="screen" id="q5">
+    <div class="q-number">QUESTION 05</div>
+    <div class="q-text">配信で一番大事にしたいのは？</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(5,'a')">
+        <span class="choice-icon">😆</span>
+        <div><span class="choice-label">みんなを笑顔にすること</span><span class="choice-sub">楽しい空間を作りたい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(5,'b')">
+        <span class="choice-icon">💕</span>
+        <div><span class="choice-label">リスナーとの深いつながり</span><span class="choice-sub">一人ひとりを大切にしたい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(5,'c')">
+        <span class="choice-icon">🎯</span>
+        <div><span class="choice-label">自分のスキルを磨くこと</span><span class="choice-sub">配信を通じて成長したい</span></div>
+      </button>
+      <button class="choice-btn" onclick="answer(5,'d')">
+        <span class="choice-icon">💰</span>
+        <div><span class="choice-label">しっかり収入につなげること</span><span class="choice-sub">好きなことで稼げるようになりたい</span></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== RESULT ===== -->
+  <div class="result-screen" id="result"></div>
+
+</div>
+
+<footer>
+  <p>© 2025 ○○○○事務所 All Rights Reserved.</p>
+</footer>
+
+<script>
+const scores = { entertainer: 0, healer: 0, creator: 0, influencer: 0 };
+
+const scoreMap = {
+  1: { a:'entertainer', b:'healer', c:'influencer', d:'creator' },
+  2: { a:'entertainer', b:'healer', c:'creator', d:'influencer' },
+  3: { a:'entertainer', b:'healer', c:'creator', d:'influencer' },
+  4: { a:'entertainer', b:'healer', c:'creator', d:'influencer' },
+  5: { a:'entertainer', b:'healer', c:'creator', d:'influencer' }
+};
+
+const results = {
+  entertainer: {
+    class: 'type-entertainer',
+    icon: '🎤',
+    badge: 'エンターテイナー型',
+    title: 'ムードメーカー配信者',
+    traits: ['トーク力', '盛り上げ上手', '瞬発力', 'ポジティブ'],
+    desc: 'あなたは人を楽しませるのが得意な、生まれながらのエンターテイナー。リスナーとのやりとりでどんどん場を盛り上げ、「また来たい」と思わせるライブ空間を作れるタイプです。配信を始めたら、リスナーがリスナーを呼ぶ好循環が生まれやすいのが強みです。',
+    advice: '最初の配信から気負わず、友達と話す感覚で始めてみてください。あなたの場合、「上手に話す」より「楽しそうに話す」ほうがリスナーは集まります。',
+  },
+  healer: {
+    class: 'type-healer',
+    icon: '🌙',
+    badge: 'ヒーラー型',
+    title: '癒し系配信者',
+    traits: ['傾聴力', '安心感', '共感力', '穏やかさ'],
+    desc: 'あなたは聞き上手で、相手に安心感を与えるのが自然にできるタイプ。配信では「この人の配信を聞いてると落ち着く」「つい長居してしまう」と感じてもらえる空間が作れます。固定のリスナーがつきやすく、長く応援してもらいやすいのが特徴です。',
+    advice: '夜のまったり配信や、リスナーの相談に乗るスタイルが相性抜群です。無理に盛り上げようとせず、あなたらしい穏やかなペースで配信してみてください。',
+  },
+  creator: {
+    class: 'type-creator',
+    icon: '🎨',
+    badge: 'クリエイター型',
+    title: '表現者タイプ配信者',
+    traits: ['独自性', '表現力', '世界観', 'こだわり'],
+    desc: 'あなたは自分の中に「見せたいもの・伝えたいこと」を持っている表現者タイプ。歌、イラスト、トークの切り口——何であれ、あなた独自の世界観がリスナーを惹きつけます。「他の人とは違う」と感じてもらいやすく、コアなファンがつきやすい傾向があります。',
+    advice: '最初から完璧を目指さず、制作過程を配信で見せるのも一つの方法です。「作りかけ」を共有することで、リスナーが応援したくなる距離感が生まれます。',
+  },
+  influencer: {
+    class: 'type-influencer',
+    icon: '📢',
+    badge: 'インフルエンサー型',
+    title: '発信力特化型配信者',
+    traits: ['情報感度', '発信力', '企画力', '行動力'],
+    desc: 'あなたは「いいものを広めたい」「自分の発見を共有したい」という気持ちが強い発信者タイプ。トレンドへのアンテナが高く、リスナーに新しい情報や体験を届けるのが得意です。企業コラボやPR案件との相性が良く、配信を仕事にしやすいタイプでもあります。',
+    advice: 'レビュー配信やおすすめ紹介を軸にすると、あなたの強みが最大限に活きます。事務所の企業コラボ案件を活用すれば、早い段階で収益化の道が開けます。',
+  }
+};
+
+function answer(qNum, choice) {
+  const type = scoreMap[qNum][choice];
+  if (type) scores[type]++;
+
+  if (qNum < 5) {
+    document.getElementById('q' + qNum).classList.remove('active');
+    document.getElementById('q' + (qNum + 1)).classList.add('active');
+    const pct = (qNum / 5) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').innerHTML = '<span>Q' + (qNum + 1) + '</span> / 5';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById('q5').classList.remove('active');
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressText').innerHTML = '<span>結果発表！</span>';
+
+  let maxType = 'entertainer';
+  let maxScore = 0;
+  for (const [type, score] of Object.entries(scores)) {
+    if (score > maxScore) { maxScore = score; maxType = type; }
+  }
+
+  const r = results[maxType];
+  const el = document.getElementById('result');
+
+  el.innerHTML = `
+    <div class="result-card ${r.class}">
+      <span class="result-icon">${r.icon}</span>
+      <span class="result-type-badge">${r.badge}</span>
+      <h2>${r.title}</h2>
+      <div class="result-traits">
+        ${r.traits.map(t => `<span class="result-trait">${t}</span>`).join('')}
+      </div>
+      <p class="result-desc">${r.desc}</p>
+    </div>
+
+    <div class="result-advice">
+      <h3>📝 あなたへのアドバイス</h3>
+      <p>${r.advice}</p>
+    </div>
+
+    <div class="share-hint">
+      <p>📲 結果をスクショしてSNSでシェアしよう！</p>
+    </div>
+
+    <div class="result-cta-section">
+      <p class="result-cta-lead">
+        あなたのタイプに合った配信スタイルで<br>
+        <span>ライバーデビュー</span>しませんか？
+      </p>
+
+      <div class="gift-incentive">
+        <p class="gift-label">🎁 今なら登録完了で</p>
+        <p class="gift-amount"><span class="small">Amazonギフト券</span><br>¥3,000 <span class="small">プレゼント</span></p>
+        <p class="gift-note">キャンペーン期間：○月○日まで</p>
+      </div>
+
+      <a href="#" class="cta-btn">まずは無料で配信者登録してみる</a>
+      <p class="cta-sub">※ 登録・配信ともに無料 ／ いつでも退所OK</p>
+      <a href="index.html" class="back-link">← キャンペーン詳細を見る</a>
+    </div>
+  `;
+
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
